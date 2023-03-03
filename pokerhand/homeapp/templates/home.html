@@ -1,0 +1,62 @@
+{% extends "webapp.html" %}
+{% block content %}
+  {% load static %}
+  <script src="{% static '/js/app.js' %}"></script>
+<h1>Poker hand home.</h1>
+<div>
+  {{ time }}
+  <b>{{ message }}</b>
+</div>
+<hr>
+<b>Select 5 cards and submit.</b>
+<div>
+  <form class="frmreg" action="pokerTool" method="post">
+  {% csrf_token %}
+    <div id="dvusers">
+    <div class="dvtbl">
+      <table id="tblusers">
+      <tbody>
+        <tr class="header">
+        <th>Name</th>
+        <th>Cards</th>
+        </tr>
+        {% for x in cards %}
+        <tr>
+        <td>{{ x }}</td>
+        <td><input class="cinpt" type="txt" id="{{x}}" name="dbtable" placeholder="Enter your Cards." value="{{x}}" maxlength="250" required /> </td>
+        <td><button class="btnSend" type="button" onclick="cardsInfo('{{x}}')">Select</button></td>
+        </tr>
+        <script type="text/javascript">
+          //cardsInfo('{{x}}');
+        </script>
+        {% endfor %}
+      </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="dvreg">
+      <input class="cinpt" type="txt" id="card01" name="card01" placeholder="Enter your Cards." value="{{x}}" maxlength="250" required />
+      <input class="cinpt" type="txt" id="card02" name="card02" placeholder="Enter your Cards." maxlength="250" required />
+      <input class="cinpt" type="txt" id="card03" name="card03" placeholder="Enter your Cards." maxlength="250" required />
+      <input class="cinpt" type="txt" id="card04" name="card04" placeholder="Enter your Cards." maxlength="250" required />
+      <input class="cinpt" type="txt" id="card05" name="card05" placeholder="Enter your Cards." maxlength="250" required />
+    </div>
+    <div class="dvreg">
+    <label>About:</label><br>
+    <textarea id="message" name="message" placeholder="More Details." maxlength="900">{{ app.info }}</textarea>
+    </div>
+    <button type="submit">Info</button>
+  </form>
+</div>
+<hr>
+
+<hr>
+<div class="gdvuiprofile">
+  <img src="{% static app.map %}" alt="{{ app.info }}">
+</div>
+{{ app.map }}
+<div class="dvinfo">
+  {{ app.info }}
+</div>
+<hr>
+{% endblock %}
