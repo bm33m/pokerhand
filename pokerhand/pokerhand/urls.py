@@ -24,5 +24,6 @@ urlpatterns = [
     path('pokerTool/', include('homeapp.urls')),
     path('', RedirectView.as_view(url='/home/', permanent=True)),
     path('pokerhandapp/', include('pokerhandapp.urls')),
+    path('pokerhandTool/', include('pokerhandapp.urls')),
     path('admin/', admin.site.urls),
 ]

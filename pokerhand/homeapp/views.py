@@ -1,18 +1,17 @@
 #
 # @author: Brian
 #
+
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.timezone import make_aware
 from django.conf import settings
-#from homeapp.models import gisTablesHome, mapHome, maps
-#from pokerhandtool.models import checkFile
-from pokerhandapp.models import pokerCards
+from pokerhandapp.models import pokerCards, PokerHand
 import pprint
 import json
 import datetime
 import time
+import random
 
 
 def index(request):
@@ -20,9 +19,11 @@ def index(request):
     ip = request.META['REMOTE_ADDR']
     now = mytime2()
     year = now.year
-    map = ['A', 'K', 'Q', 'J', 10, 9, 8, 7, 6, 5, 4, 3, 2, ]
+    pathTo = '/homeapp/cards/'
+    map = ['Hearts', 'Spades', 'Diamonds', 'Clubs', 'playing52cards', 'categories']
     cards = pokerCards()
-    app = {"map": map[0], "info": "%s %s"%(now, map[1])}
+    rand1 = random.randint(0, len(map) - 1)
+    app = {"map": '%s%s.jpg'%(pathTo, map[rand1]), "info": "%s %s"%(now, map[rand1])}
     return render(
         request, 'home.html', context={'pname': pname, 'message': now,
         'cards': cards, 'app': app, 'ip': ip, 'year': year},
@@ -43,10 +44,17 @@ def pokerTool(request):
             card04 = req['card04'].strip()
             card05 = req['card05'].strip()
             cards = [card01, card02, card03, card04, card05]
-            print("Processing: %s"%(cards))
+            #print("Processing: %s"%(cards))
             now = [now, 'results: TodoList....']
+            #
+            poker = PokerHand(cards)
+            results = poker.evaluate()
+            #print('results: %s'%(results))
+            #
+            now = [now, 'results: %s'%(results)]
             return render(
                 request, 'info.html', context={'pname': pname, 'message': now,
+                'results': results,
                 'cards': cards, 'ip': ip, 'year': year},
             )
     except Exception as e:

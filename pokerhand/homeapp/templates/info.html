@@ -2,10 +2,11 @@
 {% block content %}
   {% load static %}
   <script src="{% static '/js/app.js' %}"></script>
-<h1>Poker hand home.</h1>
+<h1>Poker hand results.</h1>
 <div>
-  {{ time }}
+  <b>{{ time }}</b>
   <b>{{ message }}</b>
+  <b>Results: {{ results }}</b>
 </div>
 <hr>
 <b>Select 5 cards and submit.</b>
@@ -39,17 +40,18 @@
       <input class="cinpt" type="txt" id="card02" name="card02" placeholder="Enter your Cards." maxlength="250" required />
       <input class="cinpt" type="txt" id="card03" name="card03" placeholder="Enter your Cards." maxlength="250" required />
       <input class="cinpt" type="txt" id="card04" name="card04" placeholder="Enter your Cards." maxlength="250" required />
-      <input class="cinpt" type="txt" id="card05" name="card02" placeholder="Enter your Cards." maxlength="250" required />
-    </div>
-    <div class="dvreg">
-    <label>About:</label><br>
-    <textarea id="message" name="message" placeholder="More Details." maxlength="900">{{ app.info }}</textarea>
+      <input class="cinpt" type="txt" id="card05" name="card05" placeholder="Enter your Cards." maxlength="250" required />
     </div>
     <button type="submit">Info</button>
   </form>
 </div>
 <hr>
-
+<div class="dvlogs">
+  <div class="log" id="log">
+  {{ results }}
+  </div>
+  <div class="logs" id="logs"></div>
+</div>
 <hr>
 <div class="gdvuiprofile">
   <img src="{% static app.map %}" alt="{{ app.info }}">

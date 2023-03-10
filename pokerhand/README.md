@@ -32,5 +32,28 @@ Quit the server with CTRL-BREAK.
 Visit:
 http://127.0.0.1:8000/
 
+Testing123:
+
+
+'''
+
+$ python manage.py test pokerhandapp
+randomCards: ['Ace of Diamonds', '7 of Clubs', '10 of Clubs', 'Jack of Hearts', '6 of Diamonds
+'],
+ results: High card
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.015s
+
+OK
+Destroying test database for alias 'default'...
+
+
+
+'''
+
+
 
 Enjoy.
