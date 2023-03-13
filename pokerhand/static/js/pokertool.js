@@ -25,10 +25,12 @@ function pokerHand(){
   logs.innerHTML = results;
   var url1 = window.location.href;
   var url22 = url1+"pokerhandTool";
-  var url2 = "/pokerhandTool/";
-  console.log(url1, url22, url2);
+  var url2 = "/pokerhandapp/pokerhand";
+  console.log("url1: "+url1);
+  console.log("url22: "+url22);
+  console.log("url2: "+url2);
   var dy = new Date();
-  var db = fetch(url22, {
+  var db = fetch(url2, {
       method: 'POST',
       body: JSON.stringify({
         card01: cardx1.value,

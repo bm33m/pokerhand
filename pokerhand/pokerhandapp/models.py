@@ -10,6 +10,7 @@ class Poker():
     def __init__(self, arg=52):
         self.numberOfCards = arg
         self.cards = pokerCards()
+        selt.categories = categories()
 
     def onePairX(self, cardP01, cardP02, cardP03, cardP04, cardP05):
         return onePair(cardP01, cardP02, cardP03, cardP04, cardP05)
@@ -111,7 +112,7 @@ class PokerHand(Poker):
             return categories('onePair')
         return categories('highCard')
 
-def categories(rank="highCard"):
+def categories(rank="all"):
     results = {
         'fiveOfaKind': 'Five of a kind',
         'straightFlush': 'Straight flush',
@@ -124,6 +125,8 @@ def categories(rank="highCard"):
         'onePair': 'One pair',
         'highCard': 'High card',
     }
+    if(rank == 'all'):
+        return results
     return results[rank]
 
 def pokerCards(arg=52):

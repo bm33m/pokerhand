@@ -55,5 +55,10 @@ Destroying test database for alias 'default'...
 '''
 
 
+API:
+visit:
+http://127.0.0.1:8000/pokerhandapp/pokerhand?cards=Ace of Spades,10 of Clubs,10 of Hearts,3 of Diamonds,3 of Spades,results
+
+
 
 Enjoy.

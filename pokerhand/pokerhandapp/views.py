@@ -34,11 +34,11 @@ def pokerhandTool(request):
         cards = pokerCards()
         if request.method == 'POST':
             req = request.POST
-            try:
-                req = json.loads(request.body.decode('utf-8'))
-                print('body: %s'%(req))
-            except Exception as e:
-                print('pokerTool: %s'%(e))
+            #try:
+            #    req = json.loads(request.body.decode('utf-8'))
+            #    print('body: %s'%(req))
+            #except Exception as e:
+            #    print('pokerTool: %s'%(e))
             #print('POST = body: %s, req: %s, request: %s'%('body', req, request))
             card01 = req['card01'].strip()
             card02 = req['card02'].strip()
@@ -56,6 +56,60 @@ def pokerhandTool(request):
     except Exception as e:
         print('pokerTool: %s'%(e))
     return JsonResponse(cards, safe=False)
+
+def pokerHand(request):
+    try:
+        cards = pokerCards()
+        if(request.method == 'GET'):
+            print('GET pokerHand: %s'%(request))
+            req1 = "request: %s"%(request)
+            print('req1: %s'%(req1))
+            cards1 = req1.split('cards=')
+            print('cards: %s'%(cards1))
+            cards2 = cards1[1]
+            req = cards2.split(',')
+            #
+            card01 = req[0].strip()
+            card02 = req[1].strip()
+            card03 = req[2].strip()
+            card04 = req[3].strip()
+            card05 = req[4].strip()
+            cards = [card01, card02, card03, card04, card05]
+            print("Processing: %s"%(cards))
+            cleanData(cards)
+            poker = PokerHand(cards)
+            results = poker.evaluate()
+            print('results: %s'%(results))
+            #
+            return JsonResponse(results, safe=False)
+            #
+        if request.method == 'POST':
+            req = json.loads(request.body.decode('utf-8'))
+            print('body: %s'%(req))
+            card01 = req['card01'].strip()
+            card02 = req['card02'].strip()
+            card03 = req['card03'].strip()
+            card04 = req['card04'].strip()
+            card05 = req['card05'].strip()
+            cards = [card01, card02, card03, card04, card05]
+            print("Processing: %s"%(cards))
+            poker = PokerHand(cards)
+            results = poker.evaluate()
+            print('results: %s'%(results))
+            #
+            return JsonResponse(results, safe=False)
+            #
+    except Exception as e:
+        print('pokerHand: %s'%(e))
+    return JsonResponse(cards, safe=False)
+
+def cleanData(cards):
+    l = len(cards)
+    for x in range(0, l):
+        y = cards[x]
+        xy = y.split('%20')
+        xyz = '%s %s %s'%(xy[0], xy[1], xy[2])
+        cards[x] = xyz
 
 def mytime2():
     now = datetime.datetime.now()

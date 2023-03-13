@@ -38,7 +38,6 @@ class TestPoker(TestCase):
         #
         pass
 
-
     def test_onePairX(self):
         cards = ['2 of Clubs', '5 of Diamonds', '2 of Hearts', '7 of Spades', '4 of Diamonds']
         hand = PokerHand(cards)
@@ -87,11 +86,9 @@ class TestPokerHand(TestCase):
         #
         pass
 
-
     def test_evaluate(self):
         #
         pass
-
 
     def checkCards(self):
         #
