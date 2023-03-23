@@ -14,6 +14,7 @@ Should return Two pairs.
 
 
 Source code:
+```
 '''
 
 git clone https://github.com/bm33m/pokerhand.git
@@ -27,13 +28,13 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CTRL-BREAK.
 
 '''
-
+```
 Visit:
 http://127.0.0.1:8000/
 
 Testing123:
 
-
+```
 '''
 
 $ python manage.py test pokerhandapp
@@ -52,7 +53,7 @@ Destroying test database for alias 'default'...
 
 
 '''
-
+```
 
 
 Enjoy.
